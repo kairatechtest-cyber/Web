@@ -20,44 +20,22 @@ body {
   display: flex;
   background: #f1f4f9;
   overflow-x: hidden;
-  flex-direction: column;
 }
 
-/* MAIN LAYOUT */
-.main-content {
-  margin-left: 260px;
-  width: calc(100% - 260px);
-  min-height: 100vh;
-  background: url("https://i.pinimg.com/1200x/e7/81/06/e78106881aa09dad26de203313739d3c.jpg")
-              no-repeat center center fixed;
-  background-size: cover;
-}
-
-.main-content::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 260px;
-  width: calc(100% - 260px);
-  height: 100%;
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(2px);
-  z-index: -1;
-}
-
-/* ======================================================================
+/* =====================================================
    SIDEBAR
-====================================================================== */
+===================================================== */
 .sidebar {
   width: 260px;
   height: 100vh;
   background: #1b2430;
   color: white;
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   padding: 25px 0;
   overflow-y: auto;
-  border-right: 1px solid #2f3a4c;
-  transition: 0.4s ease;
+  transition: 0.3s ease-in-out;
 }
 
 .sidebar-logo {
@@ -65,6 +43,7 @@ body {
   font-weight: 600;
   padding: 0 25px;
   margin-bottom: 25px;
+  color: #fff;
 }
 
 .sidebar-section {
@@ -84,14 +63,10 @@ body {
   color: #dce3eb;
   transition: 0.2s;
 }
-
 .menu-item:hover {
   background: #2d3647;
   color: #fff;
 }
-
-.menu-item i { width: 20px; font-size: 1.1rem; }
-
 .menu-item .arrow { margin-left: auto; transition: 0.3s; }
 .rotate { transform: rotate(90deg); }
 
@@ -100,7 +75,6 @@ body {
   padding-left: 55px;
   background: #222b38;
 }
-
 .dropdown a {
   display: block;
   padding: 8px 0;
@@ -108,12 +82,35 @@ body {
   font-size: 0.9rem;
   color: #cbd5e1;
 }
-
 .dropdown a:hover { color: #4fd1ff; }
 
-/* ======================================================================
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+.main-content {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  min-height: 100vh;
+  background: url("https://i.pinimg.com/1200x/e7/81/06/e78106881aa09dad26de203313739d3c.jpg")
+              no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.main-content::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 260px;
+  width: calc(100% - 260px);
+  height: 100%;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(2px);
+  z-index: -1;
+}
+
+/* =====================================================
    HEADER
-====================================================================== */
+===================================================== */
 header {
   background: rgba(255,255,255,0.9);
   padding: 15px 25px;
@@ -132,41 +129,44 @@ header {
   font-size: 1.4rem;
   font-weight: 600;
   color: #1c2d4a;
-  flex: 1;
   text-align: center;
-  min-width: 200px;
+  flex: 1;
 }
 
 .header-right {
   text-align: right;
-  font-size: 0.9rem;
+  min-width: 180px;
 }
 
 #greetingText { font-weight: 600; color: #1c2d4a; }
-#timeText { color: #567089; font-size: 0.85rem; }
+#timeText { color: #567089; font-size: 0.9rem; }
 
-/* HERO */
+/* =====================================================
+   HERO
+===================================================== */
 .hero {
-  margin: 40px 20px;
+  margin: 40px;
   background: rgba(255,255,255,0.75);
-  padding: 30px;
+  padding: 40px;
   border-radius: 12px;
   backdrop-filter: blur(4px);
   box-shadow: 0 3px 12px rgba(0,0,0,0.10);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
   text-align: center;
   color: #1b2430;
 }
 
-/* ======================================================================
+/* =====================================================
    WEATHER WIDGET
-====================================================================== */
+===================================================== */
 .weather-widget-container {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
+  bottom: 20px;
+  right: 20px;
   z-index: 50;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .weather-iframe {
@@ -177,19 +177,15 @@ header {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   transition: all 0.4s ease-in-out;
   background: transparent;
-  overflow: visible;
 }
 
 .weather-iframe.expanded {
-  width: 400px;
-  height: 670px;
-  border-radius: 25px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  width: 420px;
+  height: 680px;
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
   transform: translateY(-50px);
-}
-
-.weather-iframe:hover {
-  transform: translateY(-3px);
+  animation: fadeIn 0.5s ease;
 }
 
 @keyframes fadeIn {
@@ -197,80 +193,82 @@ header {
   to { opacity: 1; transform: scale(1); }
 }
 
-.weather-iframe.expanded {
-  animation: fadeIn 0.5s ease;
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+/* Medium devices - Tablets */
+@media (max-width: 991px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+
+  .hero {
+    font-size: 1.4rem;
+    margin: 25px;
+    padding: 30px;
+  }
+
+  .weather-iframe.expanded {
+    width: 360px;
+    height: 600px;
+  }
 }
 
-/* ======================================================================
-   RESPONSIVE DESIGN
-====================================================================== */
-@media (max-width: 1024px) {
+/* Small devices - Mobiles */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
   .main-content {
     margin-left: 0;
     width: 100%;
   }
-  .sidebar {
-    position: fixed;
-    width: 220px;
-    transform: translateX(-100%);
-  }
-  .sidebar.active {
-    transform: translateX(0);
-  }
+
   header {
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    text-align: center;
   }
-  .header-title {
-    font-size: 1.2rem;
-    text-align: left;
-  }
+
   .hero {
     margin: 20px;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    padding: 25px;
   }
-  .weather-iframe {
-    width: 220px;
-    height: 110px;
-  }
-}
 
-@media (max-width: 768px) {
-  header img { height: 35px; }
-  .header-title { font-size: 1.1rem; text-align: center; }
-  .hero { font-size: 1.2rem; padding: 25px; }
+  .weather-widget-container {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+  }
+
   .weather-iframe {
     width: 200px;
     height: 100px;
   }
-}
 
-@media (max-width: 480px) {
-  body { flex-direction: column; }
-  .sidebar { display: none; }
-  .main-content {
-    margin: 0;
-    width: 100%;
-  }
-  header {
-    padding: 10px 15px;
-    text-align: center;
-  }
-  .hero {
-    margin: 15px;
-    padding: 20px;
-    font-size: 1rem;
-  }
-  .weather-iframe {
-    width: 180px;
-    height: 90px;
-  }
   .weather-iframe.expanded {
     width: 95vw;
-    height: 80vh;
-    right: 10px;
-    bottom: 10px;
+    height: 90vh;
+    right: 2.5vw;
+    bottom: 2.5vh;
+    border-radius: 20px;
   }
 }
 </style>
@@ -278,76 +276,68 @@ header {
 
 <body>
 
-<!-- ======================================================================
-     SIDEBAR
-====================================================================== -->
+<!-- SIDEBAR -->
 <div class="sidebar">
   <div class="sidebar-logo">Industry</div>
   <div class="sidebar-section">Navigation</div>
 
-  <!-- WATER -->
   <div class="menu-item" onclick="toggleMenu('waterMenu')">
-      <i class="fa-solid fa-droplet"></i> Water
-      <i class="fa-solid fa-chevron-right arrow"></i>
+    <i class="fa-solid fa-droplet"></i> Water
+    <i class="fa-solid fa-chevron-right arrow"></i>
   </div>
   <div id="waterMenu" class="dropdown">
-      <a href="https://kairatechtest.grafana.net/public-dashboards/24e17fcff04643189b289417a62616de" target="_blank">⚪ ETP Dashboard</a>
+    <a href="https://kairatechtest.grafana.net/public-dashboards/24e17fcff04643189b289417a62616de" target="_blank">⚪ ETP Dashboard</a>
   </div>
 
-  <!-- TYRE -->
   <div class="menu-item" onclick="toggleMenu('tyreMenu')">
-      <i class="fa-solid fa-industry"></i> Tyre
-      <i class="fa-solid fa-chevron-right arrow"></i>
+    <i class="fa-solid fa-industry"></i> Tyre
+    <i class="fa-solid fa-chevron-right arrow"></i>
   </div>
   <div id="tyreMenu" class="dropdown">
-      <a href="https://kairatechtest.grafana.net/public-dashboards/7ef1f69170b242388cc89a1a99a3dfbf" target="_blank">⚪ Mixer Dashboard</a>
-      <div class="menu-item" style="padding-left:0;" onclick="toggleMenu('tbmMenu')">
-          <i class="fa-solid fa-list"></i> TBM
-          <i class="fa-solid fa-chevron-right arrow"></i>
-      </div>
-      <div id="tbmMenu" class="dropdown">
-          <a href="https://kairatechtest.grafana.net/public-dashboards/d01b24c423114dbab739cca95faf266b" target="_blank">TBM 1–6</a>
-          <a href="https://kairatechtest.grafana.net/public-dashboards/c3ac9cebe3e54e9e827d57c64b3d1bbe" target="_blank">TBM 7–12</a>
-          <a href="https://kairatechtest.grafana.net/public-dashboards/7c9a10671c624377bbac5c7c3c9d85e8" target="_blank">TBM 13–18</a>
-      </div>
+    <a href="https://kairatechtest.grafana.net/public-dashboards/7ef1f69170b242388cc89a1a99a3dfbf" target="_blank">⚪ Mixer Dashboard</a>
+    <div class="menu-item" style="padding-left:0;" onclick="toggleMenu('tbmMenu')">
+      <i class="fa-solid fa-list"></i> TBM
+      <i class="fa-solid fa-chevron-right arrow"></i>
+    </div>
+    <div id="tbmMenu" class="dropdown">
+      <a href="https://kairatechtest.grafana.net/public-dashboards/d01b24c423114dbab739cca95faf266b" target="_blank">TBM 1–6</a>
+      <a href="https://kairatechtest.grafana.net/public-dashboards/c3ac9cebe3e54e9e827d57c64b3d1bbe" target="_blank">TBM 7–12</a>
+      <a href="https://kairatechtest.grafana.net/public-dashboards/7c9a10671c624377bbac5c7c3c9d85e8" target="_blank">TBM 13–18</a>
+    </div>
   </div>
 </div>
 
-<!-- ======================================================================
-     MAIN CONTENT
-====================================================================== -->
+<!-- MAIN CONTENT -->
 <div class="main-content">
-
-<header>
-  <img src="https://kaira-technologies.com/wp-content/uploads/2023/01/logo-2.png" height="45">
-  <div class="header-title">KAIRA Technologies – Dashboard & Reports</div>
-  <div class="header-right">
+  <header>
+    <img src="https://kaira-technologies.com/wp-content/uploads/2023/01/logo-2.png" height="45">
+    <div class="header-title">KAIRA Technologies – Dashboard & Reports</div>
+    <div class="header-right">
       <div id="greetingText"></div>
       <div id="timeText"></div>
       <a href="https://kaira-technologies.com/" class="text-primary" target="_blank">
-          <i class="fa-solid fa-globe"></i> Visit Website
+        <i class="fa-solid fa-globe"></i> Visit Website
       </a>
+    </div>
+  </header>
+
+  <div class="hero">
+    Explore Real-Time Dashboards & Reports
   </div>
-</header>
 
-<div class="hero">Explore Real-Time Dashboards & Reports</div>
-
-<!-- WEATHER WIDGET -->
-<div class="weather-widget-container">
-  <iframe 
-    src="weather-widget.html"
-    class="weather-iframe"
-    title="Live Weather Widget"
-    loading="lazy"
-    scrolling="no">
-  </iframe>
+  <!-- WEATHER WIDGET -->
+  <div class="weather-widget-container">
+    <iframe 
+      src="weather-widget.html"
+      class="weather-iframe"
+      title="Live Weather Widget"
+      loading="lazy"
+      scrolling="no">
+    </iframe>
+  </div>
 </div>
 
-</div>
-
-<!-- ======================================================================
-     JAVASCRIPT
-====================================================================== -->
+<!-- JAVASCRIPT -->
 <script>
 function toggleMenu(id) {
   const section = document.getElementById(id);
@@ -356,6 +346,7 @@ function toggleMenu(id) {
   arrow.classList.toggle("rotate");
 }
 
+// Greeting + Time
 function updateGreeting() {
   const now = new Date();
   const hr = now.getHours();
@@ -368,11 +359,15 @@ function updateGreeting() {
 setInterval(updateGreeting, 1000);
 updateGreeting();
 
+// Handle Weather Widget Expand/Collapse
 window.addEventListener("message", (event) => {
   if (!event.data || !event.data.type) return;
   const iframe = document.querySelector(".weather-iframe");
-  if (event.data.type === "weatherExpand") iframe.classList.add("expanded");
-  else if (event.data.type === "weatherCollapse") iframe.classList.remove("expanded");
+  if (event.data.type === "weatherExpand") {
+    iframe.classList.add("expanded");
+  } else if (event.data.type === "weatherCollapse") {
+    iframe.classList.remove("expanded");
+  }
 });
 </script>
 </body>
