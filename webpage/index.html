@@ -295,16 +295,21 @@ header {
     <i class="fa-solid fa-chevron-right arrow"></i>
   </div>
   <div id="tyreMenu" class="dropdown">
-    <a href="https://kairatechtest.grafana.net/public-dashboards/7ef1f69170b242388cc89a1a99a3dfbf" target="_blank">⚪ Mixer Dashboard</a>
-    <a href="" target="_blank">⚪ Mixer Reports</a>
+    <div class="menu-item" style="padding-left:0;" onclick="toggleMenu('mixerMenu')">
+      <i class="fa-solid fa-list"></i> Mixer
+      <i class="fa-solid fa-chevron-right arrow"></i>
+    </div>
+    <div id="mixerMenu" class="dropdown">
+    <a href="https://kairatechtest.grafana.net/public-dashboards/7ef1f69170b242388cc89a1a99a3dfbf" target="_blank">⚪ Dashboard</a>
+    <a href="" target="_blank">⚪ Reports</a>
+    </div>
     <div class="menu-item" style="padding-left:0;" onclick="toggleMenu('tbmMenu')">
       <i class="fa-solid fa-list"></i> TBM
       <i class="fa-solid fa-chevron-right arrow"></i>
     </div>
     <div id="tbmMenu" class="dropdown">
-      <a href="https://kairatechtest.grafana.net/public-dashboards/d01b24c423114dbab739cca95faf266b" target="_blank">TBM 1–6</a>
-      <a href="https://kairatechtest.grafana.net/public-dashboards/a802d6af5cd043149abfba1726c17fcb" target="_blank">TBM4</a>
-      <a href="https://kairatechtest.grafana.net/public-dashboards/7c9a10671c624377bbac5c7c3c9d85e8" target="_blank">TBM 13–18</a>
+      <a href="https://kairatechtest.grafana.net/public-dashboards/d01b24c423114dbab739cca95faf266b" target="_blank">⚪ Dashboard</a>
+      <a href="https://kairatechtest.grafana.net/public-dashboards/a802d6af5cd043149abfba1726c17fcb" target="_blank">⚪ Analysis Dashboard</a>
       <a href="" target="_blank">⚪ TBM Reports</a>
     </div>
   </div>
@@ -375,4 +380,5 @@ window.addEventListener("message", (event) => {
 </script>
 </body>
 </html>
+
 
